@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegistrationCSS</title>
+    <style>
+    .registrationDiv{
+        border: 2px solid blue;
+        width: 400px;
+        position:absolute;
+        top:  250px;
+        left: 500px;
+        border-radius: 25px ;
+        background-color: bisque;
+    }
+    .Submit{
+            width: 100px;
+            height: 50px;
+            font-size: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            background-color: aquamarine;
+            text-align: center;
+            
+            
+        
+    }
+</style>
+
+        </head>
+<body>
+    <div class="registrationDiv">
+    <table width= "40%" align = "center">     
+        <center>
+        <h1>REGISTRATION FORM</h1></center>
+        <tr><td>UserName</td><td><input type = "text"/></td></tr>
+        <tr><td><label>Password:</label></td>
+        <td><input type ="Password"/></td></tr>
+        <tr><td><label>College:</label></td><td>
+            <select>
+                <option>  -  </option>
+                <option>KSR IET</option>
+                <option>KSR CE</option>
+                <option>KSR CT</option>
+                <option>KSR ARTS</option>
+            </td></tr>
+            </select>
+            
+
+        <tr><td><label>MobileNo:</label></td>
+            <td><input type ="text"/></td></tr>
+            <tr><td><label>Mail ID:</label></td>
+                <td><input type="text"/></td></tr>
+                <br>
+        <tr><td><label>Course:</label></td><td>
+        <select>
+           <option>None</option>
+           <option>IT</option>
+            <option>ECE</option>
+            <option>CSE</option>
+            <br>
+        </td></tr>
+        </select><br>
+        <tr><td><label>Year:</label></td>
+            <td><input type ="text"/></td></tr>
+        
+        <tr><td><label>Gender:</label></td><td>
+            <input type ="radio" name="gender"/>Male
+            <input type ="radio" name="gender"/> Female
+        </td></tr>
+        <br> 
+        <br>
+        <tr ><td colspan="2" align="center"><input type="buttton" value="Submit" class ="Submit"></td></tr>
+        
+            </table>
+        </div>
+</body>
+</html>

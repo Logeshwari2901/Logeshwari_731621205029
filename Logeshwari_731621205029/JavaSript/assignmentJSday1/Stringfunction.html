@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Function</title>
+    <script>
+        function events(){
+            let str1=document.getElementById("hi").value;
+            let str2=document.getElementById("hello").value;
+            document.write(str1.length);
+            document.write("<br><br>");
+            document.write(str1.concat(str2));
+            document.write("<br><br>");
+            document.write(str2.trim());
+            document.write("<br><br>");
+            document.write(str2.trimStart());
+            document.write("<br><br>");
+            document.write(str1.trimEnd());
+            document.write("<br><br>");
+            document.write(str1.repeat(5));
+            document.write("<br><br>");
+            document.write(str2.replace("Loks","Dolu"));
+            document.write("<br><br>");
+            document.write(str2.replaceAll("Loks","Dolu"));
+            document.write("<br><br>");
+            document.write(str2.split(" "));
+            document.write(str2.charAt(5));
+            document.write("<br><br>");
+            document.write(str1.slice(2,5));
+            document.write("<br><br>");
+            document.write(str1.substring(2,5));
+            document.write("<br><br>");
+            document.write(str2.substr(5,9));
+            document.write("<br><br>");
+            document.write(str2.toUpperCase());
+            document.write("<br><br>");
+            document.write(str1.toLowerCase());
+            document.write("<br><br>");
+        }
+    </script>
+</head>
+<body>
+    <h1>String Function</h1>
+    Enter first String : <input type="text" name="" id="hi"><br><br>
+    Enter second String : <input type="text" name="" id="hello"><br><br>
+    <button onclick="events()">Select the Functions</button>
+</body>
+</html>

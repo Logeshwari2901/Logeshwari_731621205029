@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow functionJS</title>
+    <script>
+        //without argument
+        const sum = () => 10+20;
+        document.write("<br>Addition :" + sum());
+
+        //with arugment
+        const sub= (a,b) => a-b;
+        document.write("<br>Subtration :" +sub(20,10));
+
+        //with { } and return stmt 
+        const mul= (a,b) => { return a*b };
+        document.write("<br>Multiplication :" +mul(20,10));
+
+        // for multiple line we use {} and return 
+        const big =(x,y)=>{
+            if(x>y)
+            return x;
+        else
+        return y;
+        };
+        document.write("<br>Biggest Number :" + big(10,20));
+        
+        //factorial 
+        const Factorial = (num) =>{
+            let fact = 1;
+            for(let i=1;i<=num;i++){
+                fact =fact * i;
+            }
+            return fact;
+        };
+        document.write("<br>Factorial :" + Factorial(5));
+        
+
+        
+    
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

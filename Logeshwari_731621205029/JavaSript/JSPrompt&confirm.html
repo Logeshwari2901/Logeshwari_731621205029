@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alertbox2</title>
+    <script>
+        function greeting(){
+            let name =prompt("Enter Your Name");
+            alert("Welcome" +  name );
+
+        }
+        function welcome(){
+            alert ("Hi,Welcome!")
+        }
+        function leave(){
+            confirm("Do you want to laeve this page?");
+        }
+    </script>
+</head>
+<button onclick="greeting()"> Say Welcome</button>
+    <br>
+    <br>
+    <body onload="Welcome()" onunload="leave()">
+        
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<body lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Element Method</title>
+    <script>
+        function fact(){
+            let num =document.getElementById("n1").value;
+            let fact =1;
+           /*  let result = "Factorial of Number : " + fact; */
+            let i=1;
+           for(let i=1;i<=n;i++){
+            fact= fact * i;
+            result=fact;
+           }
+           document.getElementById("ResultDiv").innerHTML = result;
+        }
+    </script>
+</head>
+<body></body>
+    Enter First Number <input type ="text" id="n1" value ="Enter the Number" 
+    onfocus= "this.value='' " onblur="fact ()" />
+    <br>
+    
+    <br>
+    <div id="ResultDiv">
+
+    </div>
+   
+</body>
+</html>

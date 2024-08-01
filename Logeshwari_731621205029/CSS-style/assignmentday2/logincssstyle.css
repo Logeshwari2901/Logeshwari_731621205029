@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url('computer.webp') no-repeat center center fixed; 
+    background-size:100% 100%;
+}
+
+.login-container {
+    width: 100%;
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.login-box {
+    width: 300px;
+    padding: 40px;
+    position: relative;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+
+.login-box .avatar {
+    width: 100px;
+    height: 70px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    left: 140px;
+    /* left: calc(50% - 50px); */
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.login-box .textbox {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.login-box .textbox input {
+    width: 100%;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    font-size: 18px;
+    outline: none;
+}
+
+.login-box .textbox input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.login-box .checkbox {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.login-box .checkbox input {
+    margin-right: 10px;
+}
+
+.login-box .checkbox a {
+    color: #00c3ff;
+}
+
+.login-box .btn {
+    width: 100%;
+    background: #00c3ff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.login-box .btn:hover {
+    background: #0097e6;
+}
+
