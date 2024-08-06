@@ -11,7 +11,7 @@
                 <div class="col-md-10">
                              <form #myForm="ngForm">
                                 <div class="form-group">
-                                    <label for="Employee Id">
+                                    <label for="Employee id">
                                         Employee Id
                                     </label>
                                     <input type="text" 
@@ -81,17 +81,17 @@
                                     Insert 
                                 </button>
                             &nbsp;&nbsp;
-                                <button class="btn btn-primary"  >
+                                <button class="btn btn-primary" (click)="updateEmployee(myForm.value)" >
                                     Update 
                                 </button>&nbsp;&nbsp;
-                                <button class="btn btn-danger" >
+                                <button class="btn btn-danger" (click)="deleteEmployee(myForm.value)" >
                                     Delete 
                                 </button>&nbsp;&nbsp;
-                                <button class="btn btn-warning" >
+                                <button class="btn btn-warning" (click)="findEmployee(myForm.value)" >
                                     Find 
                                 </button>
                                 &nbsp;&nbsp;
-                                <button class="btn btn-info" >
+                                <button class="btn btn-info" (click)="findAllEmployee()">
                                     Find All
                                 </button>
                             </form>
@@ -100,8 +100,18 @@
                     </div>
                 </div>
                 <br>
-                {{employee.empId}} - {{employee.empName}}- {{employee.empSalary}}
-         
-    </body>
+                <h3>{{result}}</h3>
+
+
+                <div style="width: 100%;" *ngIf="Flag">
+                  <table width="80%" align="center" class="table table-borderd">
+                   <tr><th>Employee Id</th><th>Employee Name</th><th>Employee Salary</th></tr> 
+                    <tr *ngFor="let emp of employeeArr">
+                        <td> {{emp.id}} </td><td> {{emp.empName}} </td><td> {{emp.empSalary}} </td>
+                    </tr>
+                 </table>
+                 </div>
+                
+                </body>
 </html>
 

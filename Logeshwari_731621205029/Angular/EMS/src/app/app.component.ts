@@ -10,19 +10,46 @@ import { EmployeeService } from './employee.service';
 export class AppComponent {
   title = 'EMS';
   employee :Employee;
+  result:string;
+  employeeArr :Employee[];
+  Flag : boolean;
 
-  constructor(private employeeService : EmployeeService){
+  constructor(private service : EmployeeService){
     this.employee=new Employee();
+    this.result="";
+    this.employeeArr =[];
+    this.Flag=false;
+   
   }
 
 
   insertEmployee(data :any){
-    this.employee.empId=data.empId;
+    this.employee.id=data.empId;
     this.employee.empName=data.empName;
     this.employee.empSalary=data.empSalary;
-    alert(data.empId+" "+data.empName+" "+data.empSalary)
 
-    this.employeeService.insertEmployee(this.employee);
+    
+   // alert(data.empid+" "+data.empName+" "+data.empSalary)
 
+    this.result=this.service.insertEmployee(this.employee);
   }
+    
+  deleteEmployee(data:any){
+    this.result=this.service.deleteEmployee(data.empId);
+  }
+  updateEmployee(data :any){
+    this.employee.id=data.empId;
+    this.employee.empName=data.empName;
+    this.employee.empSalary=data.empSalary;
+
+    this.result=this.service.updateEmployee(this.employee);
+}
+  findEmployee(data :any){
+    this.employee=this.service.findEmployee(data.empId);
+    this.result =this.employee.id +" " + this.employee.empName+ " " + this.employee.empSalary;
+  }
+  findAllEmployee(){
+    this.employeeArr = this.service.findAllEmployee();
+    this.Flag=true;
+}
 }
