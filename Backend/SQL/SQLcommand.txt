@@ -1,0 +1,371 @@
+SQL> create table tbl_employee (eid number(5), ename varchar2(20),esalary number(5));
+
+Table created.
+
+SQL> insert into tbl_employee values(101,'Logeshwari',2000);
+
+1 row created.
+
+SQL> insert into tbl_employee values(121,'Madhu',3000);
+
+1 row created.
+
+SQL> insert into tbl_employee values(102,'Logesh',4000);
+
+1 row created.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       121 Madhu                      3000
+       102 Logesh                     4000
+
+SQL> insert into tbl_employee values(103,'Dolu',5000);
+
+1 row created.
+
+SQL> insert into tbl_employee values(104,'Bolu',6000);
+
+1 row created.
+
+SQL> insert into tbl_employee values(105,'Loki',7000);
+
+1 row created.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       121 Madhu                      3000
+       102 Logesh                     4000
+       103 Dolu                       5000
+       104 Bolu                       6000
+       105 Loki                       7000
+
+6 rows selected.
+
+SQL> select * from tbl_employee where eid in (101,105);
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       105 Loki                       7000
+
+SQL> select * from tbl_employee where eid not in (101,105);
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       121 Madhu                      3000
+       102 Logesh                     4000
+       103 Dolu                       5000
+       104 Bolu                       6000
+
+SQL> select * from tbl_employee where esalary between 2000 and 6000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       121 Madhu                      3000
+       102 Logesh                     4000
+       103 Dolu                       5000
+       104 Bolu                       6000
+
+SQL> select * from tbl_employee where esalary not between 2000 and 6000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       105 Loki                       7000
+
+SQL> select * from tbl_employee where eid in (101, 102,105) and salary >4000;
+select * from tbl_employee where eid in (101, 102,105) and salary >4000
+                                                           *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier
+
+
+SQL> select * from tbl_employee where eid in (101, 102,105) and esalary >4000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       105 Loki                       7000
+
+SQL> select * from tbl_employee where eid in (101, 102,105) or esalary >4000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       102 Logesh                     4000
+       103 Dolu                       5000
+       104 Bolu                       6000
+       105 Loki                       7000
+
+SQL> select * from tbl_employee where eid >103 and esalary <4000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       121 Madhu                      3000
+
+SQL> select * from tbl_employee where eid >103 or esalary <4000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       121 Madhu                      3000
+       104 Bolu                       6000
+       105 Loki                       7000
+
+SQL> select * from tbl_employee where eid >123 or esalary <4000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       121 Madhu                      3000
+
+SQL> select * from tbl_employee where eid >102 or esalary <4000;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       121 Madhu                      3000
+       103 Dolu                       5000
+       104 Bolu                       6000
+       105 Loki                       7000
+
+SQL> insert into tbl_employee (eid,esalary) values (106,1000);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * tbl_employee;
+select * tbl_employee
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select *  from tbl_employee;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       121 Madhu                      3000
+       102 Logesh                     4000
+       103 Dolu                       5000
+       104 Bolu                       6000
+       105 Loki                       7000
+       106                            1000
+
+7 rows selected.
+
+SQL> select * from tbl_employee where ename is null;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       106                            1000
+
+SQL> select * from tbl_employee where ename is not null;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       121 Madhu                      3000
+       102 Logesh                     4000
+       103 Dolu                       5000
+       104 Bolu                       6000
+       105 Loki                       7000
+
+6 rows selected.
+
+SQL> select * from tbl_employee where ename like 'L%';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       102 Logesh                     4000
+       105 Loki                       7000
+
+SQL> select * from tbl_employee where ename like '-o%';
+
+no rows selected
+
+SQL> select * from tbl_employee where ename like 'o%';
+
+no rows selected
+
+SQL> select * from tbl_employee where ename like '_o%';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       102 Logesh                     4000
+       103 Dolu                       5000
+       104 Bolu                       6000
+       105 Loki                       7000
+
+SQL> select * from tbl_employee where ename like '%i';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       105 Loki                       7000
+
+SQL> select * from tbl_employee where ename  not like '%i';
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       121 Madhu                      3000
+       102 Logesh                     4000
+       103 Dolu                       5000
+       104 Bolu                       6000
+
+SQL> select * from tbl_employee order by eid  desc;
+
+       EID ENAME                   ESALARY
+---------- -------------------- ----------
+       121 Madhu                      3000
+       106                            1000
+       105 Loki                       7000
+       104 Bolu                       6000
+       103 Dolu                       5000
+       102 Logesh                     4000
+       101 Logeshwari                 2000
+
+7 rows selected.
+
+SQL> alter table tbl_employee add doj data;
+alter table tbl_employee add doj data
+                                 *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> alter table tbl_employee add doj date;
+
+Table altered.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY DOJ
+---------- -------------------- ---------- ---------
+       101 Logeshwari                 2000
+       121 Madhu                      3000
+       102 Logesh                     4000
+       103 Dolu                       5000
+       104 Bolu                       6000
+       105 Loki                       7000
+       106                            1000
+
+7 rows selected.
+
+SQL> update tbl_employee set doj=sysdate where eid=103;
+
+1 row updated.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY DOJ
+---------- -------------------- ---------- ---------
+       101 Logeshwari                 2000
+       121 Madhu                      3000
+       102 Logesh                     4000
+       103 Dolu                       5000 06-AUG-24
+       104 Bolu                       6000
+       105 Loki                       7000
+       106                            1000
+
+7 rows selected.
+
+SQL> update tbl_employee set doj='05-Aug-24' where eid in(101,105);
+
+2 rows updated.
+
+SQL> select * from tbl_employee;
+
+       EID ENAME                   ESALARY DOJ
+---------- -------------------- ---------- ---------
+       101 Logeshwari                 2000 05-AUG-24
+       121 Madhu                      3000
+       102 Logesh                     4000
+       103 Dolu                       5000 06-AUG-24
+       104 Bolu                       6000
+       105 Loki                       7000 05-AUG-24
+       106                            1000
+
+7 rows selected.
+
+SQL> alter table tbl_employee drop column doj;
+
+Table altered.
+
+SQL> desc tbl_employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(5)
+ ENAME                                              VARCHAR2(20)
+ ESALARY                                            NUMBER(5)
+
+SQL> alter table tbl_employee modify esalary number(7);
+
+Table altered.
+
+SQL>
+SQL> desc tbl_employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(5)
+ ENAME                                              VARCHAR2(20)
+ ESALARY                                            NUMBER(7)
+
+SQL> alter table tbl_employee rename column name=Employeename;
+alter table tbl_employee rename column name=Employeename
+                                           *
+ERROR at line 1:
+ORA-00946: missing TO keyword
+
+
+SQL>
+SQL>  alter table tbl_employee rename column ename to Employeename;
+
+Table altered.
+
+SQL> select * from tbl_employee;
+
+       EID EMPLOYEENAME            ESALARY
+---------- -------------------- ----------
+       101 Logeshwari                 2000
+       121 Madhu                      3000
+       102 Logesh                     4000
+       103 Dolu                       5000
+       104 Bolu                       6000
+       105 Loki                       7000
+       106                            1000
+
+7 rows selected.
+
+SQL> alter table tbl_employee rename to tbl1_employee;
+
+Table altered.
+
+SQL> select * from tb1l_employee;
+select * from tb1l_employee
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> rename tbl_employee to tbl1_emp;
+rename tbl_employee to tbl1_emp
+*
+ERROR at line 1:
+ORA-04043: object TBL_EMPLOYEE does not exist
+
+
+SQL> rename tbl1_employee to tbl1_emp;
+
+Table renamed.
