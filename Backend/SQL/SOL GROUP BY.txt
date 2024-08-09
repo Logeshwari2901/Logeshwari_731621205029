@@ -1,0 +1,279 @@
+                                                                                                    GROUP BY
+
+create table tbl_employee1(eid number(3),ename varchar2(10),esalary number(5),dno number(5));
+
+Table created.
+
+SQL> desc tbl_employee1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(3)
+ ENAME                                        VARCHAR2(10)
+ ESALARY                                    NUMBER(5)
+ DNO                                              NUMBER(5)
+
+SQL> insert into tbl_employee1 values(101,'Valan',70000,10);
+
+1 row created.
+
+SQL> insert into tbl_employee1 values(102,'Raj',30000,10);
+
+1 row created.
+
+SQL> insert into tbl_employee1 values(103,'Kumar',40000,20);
+
+1 row created.
+
+SQL> insert into tbl_employee1 values(104,'Vijay',50000,20);
+
+1 row created.
+
+SQL> insert into tbl_employee1 values(105,'Ajay',60000,30);
+
+1 row created.
+
+SQL> insert into tbl_employee1 values(105,'',30000,30);
+
+1 row created.
+
+SQL> select * from tbl_employee1;
+
+       EID ENAME         ESALARY        DNO
+---------- ---------- ---------- ----------
+       101 Valan           70000         10
+       102 Raj             30000         10
+       103 Kumar           40000         20
+       104 Vijay           50000         20
+       105 Ajay            60000         30
+       105                 30000         30
+
+6 rows selected.
+
+SQL> select dno, count(*) from tbl_employee1 group by dno;
+
+       DNO   COUNT(*)
+---------- ----------
+        30          2
+        20          2
+        10          2
+
+SQL> select dno, count(*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_employee1 group by dno;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+        30          2        90000        45000        30000        60000
+        20          2        90000        45000        40000        50000
+        10          2       100000        50000        30000        70000
+
+SQL> select dno, count(*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_employee1 group by dno order by dno;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+        10          2       100000        50000        30000        70000
+        20          2        90000        45000        40000        50000
+        30          2        90000        45000        30000        60000
+
+SQL> select dno, count(*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_employee1 group by dno having min(esalary)>3000 order by dno;
+
+       DNO   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+        10          2       100000        50000        30000        70000
+        20          2        90000        45000        40000        50000
+        30          2        90000        45000        30000        60000
+
+SQL> select eid, count(*),sum(esalary),avg(esalary),min(esalary),max(esalary) from tbl_employee1 group by eid having min(esalary)>3000 order by eid;
+
+       EID   COUNT(*) SUM(ESALARY) AVG(ESALARY) MIN(ESALARY) MAX(ESALARY)
+---------- ---------- ------------ ------------ ------------ ------------
+       101          1        70000        70000        70000        70000
+       102          1        30000        30000        30000        30000
+       103          1        40000        40000        40000        40000
+       104          1        50000        50000        50000        50000
+       105          2        90000        45000        30000        60000
+
+====>CREATING CONSTRAINTS  :
+
+
+SQL> create table tbl_student(reg_no number(5) primary key,
+  2  stu_name varchar2(20) not null,
+  3  stu_email varchar2(20) unique,
+  4  stu_age number(3) check(stu_age>0),
+  5  stu_location varchar2(20) default 'Salem');
+
+Table created.
+
+==> CREATING VIOLATION MESSAGES:
+
+SQL> insert into tbl-student(101,'','loks@gmail.com',-20,'');
+insert into tbl-student(101,'','loks@gmail.com',-20,'')
+               *
+ERROR at line 1:
+ORA-00926: missing VALUES keyword
+
+
+SQL> insert into tbl_student(101,'','loks@gmail.com',-20,'');
+insert into tbl_student(101,'','loks@gmail.com',-20,'')
+                        *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into tbl_student values(101,'','loks@gmail.com',-20,'');
+insert into tbl_student values(101,'','loks@gmail.com',-20,'')
+                                   *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SYSTEM"."TBL_STUDENT"."STU_NAME")
+
+
+SQL> insert into tbl_student values(101,'loks','loks@gmail.com',-20,'');
+insert into tbl_student values(101,'loks','loks@gmail.com',-20,'')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C007005) violated
+
+
+SQL> insert into tbl_student values(101,'loks','loks@gmail.com',20,'');
+
+1 row created.
+
+SQL> select * from tbl_student;
+
+    REG_NO STU_NAME             STU_EMAIL               STU_AGE
+---------- -------------------- -------------------- ----------
+STU_LOCATION
+--------------------
+       101 loks                 loks@gmail.com               20
+
+
+
+SQL> create table department (dno number(5) primary key,dname varchar2(10));
+
+Table created.
+
+SQL> create table employee(eid number(5) primary key,ename varchar2(10),esalary number(5),dno number(5),foreign key(dno) references department(dno));
+
+Table created.
+
+
+=====>>  WE NEED TO CREATE A DATA FOR THE DEPARTMENT TABLE : <<======
+
+SQL> create table department (dno number(5) primary key,dname varchar2(10));
+
+Table created.
+
+SQL> create table employee(eid number(5) primary key,ename varchar2(10),esalary number(5),dno number(5),foreign key(dno) references department(dno));
+
+Table created.
+
+SQL> insert into employee values(1,'loks',2000,2);
+insert into employee values(1,'loks',2000,2)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SYSTEM.SYS_C007010) violated - parent key not
+found
+
+
+SQL> insert into department values(1,'IT');
+
+1 row created.
+
+SQL> insert into employee values(1,'loks',2000,1);
+
+1 row created.
+
+SQL> select * from department;
+
+       DNO DNAME
+---------- ----------
+         1 IT
+
+SQL> select * from employee;
+
+       EID ENAME         ESALARY        DNO
+---------- ---------- ---------- ----------
+         1 loks             2000          1
+
+SQL> insert into department values(2,'CSE');
+
+1 row created.
+
+SQL> insert into department values(3,'ECE');
+
+1 row created.
+
+SQL> insert into employee values(2,'lok',3000,2);
+
+1 row created.
+
+SQL> insert into employee values(3,'losk',4000,3);
+
+1 row created.
+
+=====>> CREATING VIEW :
+
+SQL> create view myfirstview as select * from employee where dno=3;
+
+View created.
+
+SQL> select * from myfirstview;
+
+       EID ENAME         ESALARY        DNO
+---------- ---------- ---------- ----------
+         3 losk             4000          3
+
+SQL> update myfirstview set esalary =5000 where dno=3;
+
+1 row updated.
+
+SQL> select * from myfirstview;
+
+       EID ENAME         ESALARY        DNO
+---------- ---------- ---------- ----------
+         3 losk             5000          3
+
+
+SQL> delete myfirstview where dno=3;
+
+1 row deleted.
+
+SQL> select * from employee;
+
+       EID ENAME         ESALARY        DNO
+---------- ---------- ---------- ----------
+         1 loks             2000          1
+         2 lok              3000          2
+
+=====>>CREATING ALIASES :
+
+SQL> select eid as "Employee Id",ename "Employee Name" from employee;
+
+Employee Id Employee N
+----------- ----------
+          1 loks
+          2 lok
+
+SQL> select dno, count(*) as "Total No Of Employee" from employee group by dno;
+
+       DNO Total No Of Employee
+---------- --------------------
+         1                    1
+         2                    1
+
+                                                                                                             ------------xxxxx---------xxxxx----------xxxxxx--------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
